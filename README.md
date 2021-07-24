@@ -1,0 +1,1 @@
+#For starters Dantessa is the name of the blockchain
