@@ -1,0 +1,1 @@
+/*This is the start file of the app from here the full TX process will start and therefore the minning process*/

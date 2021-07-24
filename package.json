@@ -1,0 +1,17 @@
+{
+  "name": "dantessa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2",
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.26.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "elliptic": "^6.5.4",
+    "express": "^4.17.1",
+    "crypto-js": "^4.0.0"
+  }
+}
