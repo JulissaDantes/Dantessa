@@ -33,7 +33,7 @@ function mine(tx){
     //if block was added we need to make the working block an empty one
     fs.writeFileSync("./data/block.json",(JSON.stringify(new Block('',0,[]))));//write info on working block file
     fs.writeFileSync("./data/blockchainState.json",(JSON.stringify(blockchain)));
-    console.log(`Mined block #${blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}`);
+    console.log(`\n\nMined block #${blockchain.blockHeight()} with a hash of ${block.hash()} at nonce ${block.nonce}\n`);
 }
   module.exports = {
     mine

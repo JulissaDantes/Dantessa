@@ -14,11 +14,13 @@ let running = false;
      let utxos = [];
      for(let i = 1;i<=account.balance;i++){
      //add utxos
-         utxos.push(new UTXO(account.publicKey,1));
+        const utxo = new UTXO(account.publicKey,1);
+        utxos.push(utxo);
      }
      let newaccount = new Account(account.publicKey, account.privateKey, account.balance, utxos);
      accounts.push(newaccount);
  }
+
 
 function main(){
    if(!running){
