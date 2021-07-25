@@ -1,11 +1,11 @@
 /*This is the start file of the app from here the full TX process will start and therefore the minning process*/
-const mine = require('./proofOfWork');
+const Miner = require('./proofOfWork');
 const Transaction = require('./models/Transaction');
 const Account = require('./models/Account');
 const UTXO = require('./models/UTXO');
 const fs = require('fs');
 
-
+let running = false;
  //get all accounts
  const data = JSON.parse(fs.readFileSync("./data/accounts.json"));
 
@@ -21,23 +21,26 @@ const fs = require('fs');
  }
 
 function main(){
-   
-    const sender = accounts[getPseudoRandom(null,accounts.length-1,0)];
-    const recipient = accounts[getPseudoRandom(accounts.indexOf(sender),accounts.length-1,0)];
-    const transfering = getPseudoRandom(null,sender.balance-1, 1);//or minus gas price
-    const input = [];//what is going to be spend
-    for(let i = 1;i<=transfering;i++){
-        input.push(new UTXO(sender.publicKey,1));
+   if(!running){
+        const sender = accounts[getPseudoRandom(null,accounts.length-1,0)];
+        const recipient = accounts[getPseudoRandom(accounts.indexOf(sender),accounts.length-1,0)];
+        const transfering = getPseudoRandom(null,sender.balance-1, 1);//or minus gas price
+        const input = [];//what is going to be spend
+        for(let i = 1;i<=transfering;i++){
+            input.push(new UTXO(sender.publicKey,1));
+        }
+        const output = sender.utxos; //what we have
+        //generate tx with timer
+        const tx = new Transaction(sender,recipient,input,output);
+        console.log("sender's (",sender.publicKey,")current balance",sender.balance,"recipient's (",recipient.publicKey,"current balance",recipient.balance);
+        const result = tx.execute();
+        if(result){
+            running = true;
+            Miner.mine(tx);
+            running = false;    
+        }
     }
-    const output = sender.utxos; //what we have
-    //generate tx with timer
-    const tx = new Transaction(sender,recipient,input,output);
-    console.log("sender's (",sender.publicKey,")current balance",sender.balance,"recipient's (",recipient.publicKey,"current balance",recipient.balance);
-    const result = tx.execute();
-    if(result){
-        mine(tx);
-    }
-    //setTimeout(main, 5500);//Every 5 seconds
+    setTimeout(main, 2500);//Every 5 seconds
 }
 
 function getPseudoRandom(excludedValue, top, bottom){

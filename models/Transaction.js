@@ -19,7 +19,7 @@ class Transaction {
     this.originator.calcBalance();
     this.recipient.utxos.push(new UTXO(this.recipient.publicKey, Number(this.inputs.filter(x => !x.spent).reduce((a, b) => a + (b.amount || 0), 0))));
     this.recipient.calcBalance();
-    return false;
+    return true;
   }
 }
 
