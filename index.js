@@ -1,5 +1,5 @@
 /*This is the start file of the app from here the full TX process will start and therefore the minning process*/
-const Miner = require('./proofOfWork');
+const Miner = require('./miner');
 const Transaction = require('./models/Transaction');
 const Account = require('./models/Account');
 const UTXO = require('./models/UTXO');
