@@ -11,5 +11,5 @@
 
 - To start running a new chain just empty the blockChainState.json, block.json, and accounts.json files.
 
-##How to run
+## How to run
 After ```npm i``` just run ```node index.js``` from the project folder
