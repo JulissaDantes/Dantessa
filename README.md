@@ -10,3 +10,6 @@
 - It wont send the TX to be mined if the TX failed for any reason.
 
 - To start running a new chain just empty the blockChainState.json, block.json, and accounts.json files.
+
+##How to run
+  After   npm i from the project folder just run  node index.js
